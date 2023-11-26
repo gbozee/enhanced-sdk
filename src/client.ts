@@ -34,8 +34,11 @@ export class EnhancedSavingsClient {
     );
     this.app_config = result.data as AppConfig;
   }
-  async updateAuthToken(payload: Credential & { password: string }) {
-    if (!this.app_config) {
+  async updateAuthToken(
+    payload: Credential & { password: string },
+    recreate = false
+  ) {
+    if (!this.app_config || recreate) {
       await this.getAppConfig();
     }
     this.token = this.encryptPayload(payload);
@@ -79,5 +82,13 @@ export class EnhancedSavingsClient {
     return await this.makeAuthenticatedCall<{
       hello: string;
     }>("get_account", {});
+  }
+  async sampleWorker(worker: Worker) {
+    return new Promise((resolve, reject) => {
+      worker.postMessage({ hello: "world" });
+      worker.onmessage = (event) => {
+        resolve(event.data);
+      };
+    });
   }
 }
