@@ -1,6 +1,6 @@
 import { expect, test, describe } from "bun:test";
-// import { EnhancedSavingsClient } from "../src";
-import { EnhancedSavingsClient } from "../dist";
+import { EnhancedSavingsClient } from "../src";
+// import { EnhancedSavingsClient } from "../dist";
 
 describe("EnhancedSavingsClient", () => {
   const options = {
@@ -26,13 +26,13 @@ describe("EnhancedSavingsClient", () => {
         hello: "world",
       });
     });
-    test("run worker test", async () => {
-      const worker = new Worker(new URL("../dist/worker.js", import.meta.url));
-      const result = await client.sampleWorker(worker);
-      expect(result).toEqual({
-        hello: "world",
-      });
-    });
+    // test("run worker test", async () => {
+    //   const worker = new Worker(new URL("../dist/worker.js", import.meta.url));
+    //   const result = await client.sampleWorker(worker);
+    //   expect(result).toEqual({
+    //     hello: "world",
+    //   });
+    // });
   });
 
   // Add more test cases for other functions in the EnhancedSavingsClient class

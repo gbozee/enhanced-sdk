@@ -30,7 +30,7 @@ export class EnhancedSavingsClient {
   }
   private async getAppConfig() {
     const result: JSONResponse = await api.getFetcher(
-      `${this.baseUrl}/ai/auth/app-config`
+      `${this.baseUrl}/auth/app-config`
     );
     this.app_config = result.data as AppConfig;
   }
@@ -64,7 +64,7 @@ export class EnhancedSavingsClient {
       throw new Error("No token found. Please call updateAuthToken first");
     }
     const response: Response = await api.postFetcher(
-      `${this.baseUrl}/ai/auth/make-authenticated-call`,
+      `${this.baseUrl}/auth/make-authenticated-call`,
       {
         action,
         params: payload,
